@@ -1,33 +1,25 @@
 package com.example.trainingsapp.company;
 
-import com.example.trainingsapp.commons.BasicEntity;
-import com.example.trainingsapp.training.TrainingEntity;
-import org.hibernate.validator.constraints.pl.NIP;
+import com.example.trainingsapp.training.TrainingResource;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "companies")
-public class CompanyEntity extends BasicEntity {
+public class CompanyResource {
 
-    @NotBlank
     private String companyName;
 
     private String companyDescription;
 
-    @NIP
     private String companyNIP;
 
-    @OneToMany
-    private List<TrainingEntity> trainings;
+    private List<TrainingResource> trainings;
 
-    public CompanyEntity() {
-        trainings = new ArrayList<>();
+    public CompanyResource(String companyName, String companyNIP) {
+        this.companyName = companyName;
+        this.companyNIP = companyNIP;
+    }
+
+    public CompanyResource() {
     }
 
     public String getCompanyName() {
@@ -54,11 +46,11 @@ public class CompanyEntity extends BasicEntity {
         this.companyNIP = companyNIP;
     }
 
-    public List<TrainingEntity> getTrainings() {
+    public List<TrainingResource> getTrainings() {
         return trainings;
     }
 
-    public void setTrainings(List<TrainingEntity> trainings) {
+    public void setTrainings(List<TrainingResource> trainings) {
         this.trainings = trainings;
     }
 }
