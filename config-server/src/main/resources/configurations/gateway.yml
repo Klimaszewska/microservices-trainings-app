@@ -1,0 +1,8 @@
+server:
+  port: 8222
+
+zuul:
+  routes:
+    trainings-app:
+      path: /trainings/**
+      serviceId: trainings-app
