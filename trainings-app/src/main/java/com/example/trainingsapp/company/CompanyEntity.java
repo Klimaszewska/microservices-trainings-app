@@ -1,13 +1,13 @@
 package com.example.trainingsapp.company;
 
 import com.example.trainingsapp.commons.BasicEntity;
+import com.example.trainingsapp.commons.Status;
 import com.example.trainingsapp.training.TrainingEntity;
 import org.hibernate.validator.constraints.pl.NIP;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +23,15 @@ public class CompanyEntity extends BasicEntity {
     @NIP
     private String companyNIP;
 
-    @OneToMany
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    @OneToMany(cascade = CascadeType.ALL)
     private List<TrainingEntity> trainings;
 
     public CompanyEntity() {
+        status = Status.ACTIVE;
         trainings = new ArrayList<>();
     }
 
@@ -60,5 +65,13 @@ public class CompanyEntity extends BasicEntity {
 
     public void setTrainings(List<TrainingEntity> trainings) {
         this.trainings = trainings;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

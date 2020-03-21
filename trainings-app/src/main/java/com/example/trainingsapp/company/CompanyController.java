@@ -29,4 +29,9 @@ public class CompanyController {
         companyService.createCompany(companyResource);
     }
 
+    @PatchMapping(path = "/{id}")
+    public void deactivateCompany(@PathVariable("id") Long id) {
+        companyService.deactivateCompany(id);
+    }
+
 }

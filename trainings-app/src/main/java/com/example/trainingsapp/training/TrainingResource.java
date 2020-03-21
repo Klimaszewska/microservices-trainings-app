@@ -1,7 +1,6 @@
 package com.example.trainingsapp.training;
 
-import com.example.trainingsapp.company.CompanyResource;
-import com.example.trainingsapp.trainingstatus.TrainingStatus;
+import com.example.trainingsapp.commons.Status;
 
 public class TrainingResource {
 
@@ -9,16 +8,17 @@ public class TrainingResource {
 
     private String trainingDescription;
 
-    private TrainingStatus trainingStatus;
+    private Status status;
 
     private boolean isInitial;
 
-    private CompanyResource company;
-
-    public TrainingResource(String trainingName, TrainingStatus trainingStatus, boolean isInitial) {
+    public TrainingResource(String trainingName, Status status, boolean isInitial) {
         this.trainingName = trainingName;
-        this.trainingStatus = TrainingStatus.ACTIVE;
+        this.status = Status.ACTIVE;
         this.isInitial = isInitial;
+    }
+
+    public TrainingResource() {
     }
 
     public String getTrainingName() {
@@ -37,12 +37,12 @@ public class TrainingResource {
         this.trainingDescription = trainingDescription;
     }
 
-    public TrainingStatus getTrainingStatus() {
-        return trainingStatus;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setTrainingStatus(TrainingStatus trainingStatus) {
-        this.trainingStatus = trainingStatus;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public boolean isInitial() {
@@ -51,13 +51,5 @@ public class TrainingResource {
 
     public void setInitial(boolean initial) {
         isInitial = initial;
-    }
-
-    public CompanyResource getCompany() {
-        return company;
-    }
-
-    public void setCompany(CompanyResource company) {
-        this.company = company;
     }
 }

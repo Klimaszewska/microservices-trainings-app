@@ -1,10 +1,12 @@
 package com.example.trainingsapp.training;
 
 import com.example.trainingsapp.commons.BasicEntity;
-import com.example.trainingsapp.company.CompanyEntity;
-import com.example.trainingsapp.trainingstatus.TrainingStatus;
+import com.example.trainingsapp.commons.Status;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -19,16 +21,13 @@ public class TrainingEntity extends BasicEntity {
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private TrainingStatus trainingStatus;
+    private Status status;
 
     @NotNull
     private boolean isInitial;
 
-    @ManyToOne
-    private CompanyEntity companyEntity;
-
     public TrainingEntity() {
-        trainingStatus = TrainingStatus.ACTIVE;
+        status = Status.ACTIVE;
     }
 
     public String getTrainingName() {
@@ -47,12 +46,12 @@ public class TrainingEntity extends BasicEntity {
         this.trainingDescription = trainingDescription;
     }
 
-    public TrainingStatus getTrainingStatus() {
-        return trainingStatus;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setTrainingStatus(TrainingStatus trainingStatus) {
-        this.trainingStatus = trainingStatus;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public boolean isInitial() {
@@ -61,13 +60,5 @@ public class TrainingEntity extends BasicEntity {
 
     public void setInitial(boolean initial) {
         isInitial = initial;
-    }
-
-    public CompanyEntity getCompanyEntity() {
-        return companyEntity;
-    }
-
-    public void setCompanyEntity(CompanyEntity companyEntity) {
-        this.companyEntity = companyEntity;
     }
 }
